@@ -1,6 +1,8 @@
 # @cloudbourn/scheduler-sdk
 
-Create and manage jobs in a Cloudbourn Scheduler such as[lingering.io](https://lingering.io)
+Create and manage jobs in a Cloudbourn Scheduler such as [lingering.io](https://lingering.io)
+
+[ ![npm version](https://img.shields.io/npm/v/@cloudbourn/scheduler-sdk.svg?style=flat) ](https://npmjs.org/package/@cloudbourn/scheduler-sdk "View this project on npm") [ ![Issues](https://img.shields.io/github/issues/Cloudbourn/scheduler-sdk.svg) ](https://github.com/Cloudbourn/scheduler-sdk/issues)
 
 ## Usage
 
