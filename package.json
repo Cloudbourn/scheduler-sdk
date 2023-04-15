@@ -1,0 +1,52 @@
+{
+  "name": "@cloudbourn/scheduler-sdk",
+  "version": "0.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=14.19.1"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepack": "tsc",
+    "prepare": "husky install",
+    "test": "tsc --noEmit && npx eslint src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cloudbourn/scheduler-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cloudbourn/scheduler-sdk/issues"
+  },
+  "homepage": "https://lingering.io",
+  "keywords": [
+    "scheduler",
+    "webhooks",
+    "api",
+    "sdk",
+    "lingering"
+  ],
+  "author": "Joakim Hedlund <joakim.hedlund@cloudbourn.com>",
+  "license": "MIT",
+  "dependencies": {
+    "phin": "^3.7.0"
+  },
+  "devDependencies": {
+    "@cloudbourn/commitlint-config": "^1.0.0",
+    "@commitlint/cli": "^17.4.2",
+    "@types/node": "^14.18.42",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^7.0.4",
+    "typescript": "^5.0.4"
+  }
+}
