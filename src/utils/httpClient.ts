@@ -28,11 +28,24 @@ export const phin = async <T = unknown>(
     Authorization: authHeader,
   }
 
-  return await basePhin<T>({
+  const res = await basePhin<T>({
     parse: 'json',
     timeout: 2000,
     ...opts,
     url,
     headers,
   })
+
+  if (res.statusCode && res.statusCode > 299) {
+    const { error, message } = res.body as { error?: string, message?: string }
+    if (error) {
+      throw new Error(`HTTP ${res.statusCode}: ${error}`)
+    }
+    if (message) {
+      throw new Error(`HTTP ${res.statusCode}: ${message}`)
+    }
+    throw new Error(`HTTP ${res.statusCode}: ${JSON.stringify(res.body)}`)
+  }
+
+  return res
 }
