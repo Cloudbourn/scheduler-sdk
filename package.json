@@ -47,6 +47,8 @@
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^7.0.4",
-    "typescript": "^5.0.4"
+    "nock": "^13.3.6",
+    "typescript": "^5.0.4",
+    "vitest": "^0.34.6"
   }
 }
