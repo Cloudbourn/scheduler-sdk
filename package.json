@@ -11,8 +11,8 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc",
-    "prepack": "tsc",
+    "build": "rm -rf dist/ && tsc -p tsconfig.build.json",
+    "prepack": "rm -rf dist/ && tsc -p tsconfig.build.json",
     "prepare": "husky install",
     "test": "tsc --noEmit && npx eslint src/"
   },
