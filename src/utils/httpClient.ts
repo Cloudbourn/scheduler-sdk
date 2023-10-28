@@ -1,16 +1,22 @@
 import basePhin from 'phin'
 
-let endpointBaseUrl = 'https://api.lingering.io'
+const LINGERING_API = 'https://api.lingering.io'
+let endpointBaseUrl = LINGERING_API
 export const setBaseUrl = (url: string): void => {
   endpointBaseUrl = url
 }
 
-let authHeader: string | undefined
-export const setAuthorization = (value?: string): void => {
+let authHeader: string = ''
+export const setAuthorization = (value: string): void => {
   if (!value?.length) {
-    authHeader = undefined
+    authHeader = ''
   } else {
     authHeader = value
+  }
+}
+const assertAuthorizationPresent = (): void => {
+  if (!authHeader && endpointBaseUrl === LINGERING_API) {
+    throw new Error('Authorization header is not set. Call setAuthorization() first.')
   }
 }
 
@@ -20,6 +26,8 @@ type IWithData = basePhin.IWithData<IOptions>
 export const phin = async <T = unknown>(
   opts: IOptions | IWithData,
 ): Promise<basePhin.IJSONResponse<T>> => {
+  assertAuthorizationPresent()
+
   const url = typeof opts.url === 'string'
     ? `${endpointBaseUrl}${opts.url}`
     : opts.url.toString()
