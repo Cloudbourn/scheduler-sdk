@@ -1,6 +1,6 @@
 import { phin } from './utils/httpClient'
 
-export interface JobBody {
+export interface BaseJob {
   /**
    * A valid URL that can be called from the internet
    */
@@ -8,7 +8,7 @@ export interface JobBody {
 
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
-  body: any
+  body?: Record<string, unknown>
 
   /**
    * ISO 8601 timestamp
@@ -17,7 +17,16 @@ export interface JobBody {
   scheduleAt: string
 }
 
-export interface StoredJob extends JobBody {
+type GetReq = BaseJob & { method: 'GET' }
+interface PostPutPatchReq extends BaseJob {
+  method: 'POST' | 'PUT' | 'PATCH'
+  body: Record<string, unknown>
+}
+type DeleteReq = BaseJob & { method: 'DELETE' }
+
+export type JobRequest = GetReq | PostPutPatchReq | DeleteReq
+
+export interface StoredJob extends BaseJob {
   /**
    * @example "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
    */
@@ -44,7 +53,7 @@ export interface StoredJob extends JobBody {
   status: 'STORED' | 'QUEUED' | 'RUNNING' | 'DONE'
 }
 
-export const add = async (job: JobBody): Promise<StoredJob> => {
+export const add = async (job: JobRequest): Promise<StoredJob> => {
   const res = await phin<StoredJob>({
     url: '/jobs',
     method: 'POST',

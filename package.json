@@ -11,10 +11,10 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc",
-    "prepack": "tsc",
+    "build": "rm -rf dist/ && tsc -p tsconfig.build.json",
+    "prepack": "rm -rf dist/ && tsc -p tsconfig.build.json",
     "prepare": "husky install",
-    "test": "tsc --noEmit && npx eslint src/"
+    "test": "tsc --noEmit && eslint src/ && vitest run"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,8 @@
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^7.0.4",
-    "typescript": "^5.0.4"
+    "nock": "^13.3.6",
+    "typescript": "^5.0.4",
+    "vitest": "^0.34.6"
   }
 }
